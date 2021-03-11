@@ -37,39 +37,6 @@ void createImage(image<T>& theImg, vector<shared_ptr<shape>> theShapes, T inC) {
 
 
 template <>  
-void createImage<int>(image<int>& theImg, 
-				vector<shared_ptr<shape>> theShapes, int inC) {
-
-	float res;
-	color drawC;
-
-	bool inTrue = false;
-	double curDepth = -1.0;
-
-	//for every point in the 2D space
-	for (int y=0; y < theImg.h(); y++) {
-		for (int x =0; x < theImg.w(); x++) {
-
-			inTrue = false;
-			curDepth = -1;
-			//iterate through all possible equations
-			for (auto eq : theShapes) {
-				if (eq->eval(x, y) && eq->getDepth() > curDepth) {
-					inC = (eq->getInC().bright())/3;
-					inTrue = true;
-					curDepth = eq->getDepth();
-				}
-			}
-					
-			if (inTrue) {			
-				theImg.setPixel(x, y, inC);
-			}
-		}
-	}
-}
-
-
-template <>  
 void createImage<color>(image<color>& theImg, 
 				vector<shared_ptr<shape>> theShapes, color inC) {
 
@@ -88,7 +55,12 @@ void createImage<color>(image<color>& theImg,
 			//iterate through all possible equations
 			for (auto eq : theShapes) {
 				if (eq->eval(x, y) && eq->getDepth() > curDepth) {
-					inC = eq->getInC();
+					if(typeid(inC) == typeid(int)){
+						inC = (eq->getInC().bright())/3;
+					}
+					else {
+						inC = eq->getInC();
+					}
 					inTrue = true;
 					curDepth = eq->getDepth();
 				}
@@ -100,113 +72,4 @@ void createImage<color>(image<color>& theImg,
 		}
 	}
 }
-
-/*
-//   BOOL    
-
-template <>  
-void createImage<bool>(image<bool>& theImg, 
-				vector<shared_ptr<shape>> theShapes, bool inC) {
-
-	float res;
-	color drawC;
-
-	bool inTrue = false;
-	double curDepth = -1.0;
-
-	//for every point in the 2D space
-	for (int y=0; y < theImg.h(); y++) {
-		for (int x =0; x < theImg.w(); x++) {
-
-			inTrue = false;
-			curDepth = -1;
-			//iterate through all possible equations
-			for (auto eq : theShapes) {
-				if (eq->eval(x, y) && eq->getDepth() > curDepth) {
-					//inC = eq->getInC();
-					inTrue = true;
-					curDepth = eq->getDepth();
-				}
-			}
-					
-			if (inTrue) {			
-				theImg.setPixel(x, y, inC);
-			}
-		}
-	}
-}
-
-
-//   CHAR    
-
-template <>  
-void createImage<char>(image<char>& theImg, 
-				vector<shared_ptr<shape>> theShapes, char inC) {
-
-	float res;
-	color drawC;
-
-	bool inTrue = false;
-	double curDepth = -1.0;
-
-	//for every point in the 2D space
-	for (int y=0; y < theImg.h(); y++) {
-		for (int x =0; x < theImg.w(); x++) {
-
-			inTrue = false;
-			curDepth = -1;
-			//iterate through all possible equations
-			for (auto eq : theShapes) {
-				if (eq->eval(x, y) && eq->getDepth() > curDepth) {
-					//inC = eq->getInC();
-					inTrue = true;
-					curDepth = eq->getDepth();
-				}
-			}
-					
-			if (inTrue) {			
-				theImg.setPixel(x, y, inC);
-			}
-		}
-	}
-}
-
-
-//   GRAYSCALE   
-
-template <>  
-void createImage<int>(image<int>& theImg, 
-				vector<shared_ptr<shape>> theShapes, int inC) {
-
-	float res;
-	color drawC;
-
-	bool inTrue = false;
-	double curDepth = -1.0;
-
-	//for every point in the 2D space
-	for (int y=0; y < theImg.h(); y++) {
-		for (int x =0; x < theImg.w(); x++) {
-
-			inTrue = false;
-			curDepth = -1;
-			//iterate through all possible equations
-			for (auto eq : theShapes) {
-				if (eq->eval(x, y) && eq->getDepth() > curDepth) {
-					inC = eq->getInC();
-					inTrue = true;
-					curDepth = eq->getDepth();
-				}
-			}
-					
-			if (inTrue) {			
-				theImg.setPixel(x, y, inC);
-			}
-		}
-	}
-}
-
-*/
-
-
 

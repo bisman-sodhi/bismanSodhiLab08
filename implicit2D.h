@@ -17,6 +17,18 @@ class Implicit2D : public shape {
 		return ( (((center.x()-x)*(center.x()-x))/(radii.x()*radii.x()) + 
 				((center.y()-y)*(center.y()-y))/(radii.y()*radii.y()) - 1.0f)  < 0);
 	}
+
+/*
+	void validate(){
+		if((center.x() < 0) && (center.y() < 0)){
+			throw "ellipse center less zero"
+		}
+
+		
+	}
+	*/
+
+
 	void translate(vec2 offset) {
 		center += offset;
 	}

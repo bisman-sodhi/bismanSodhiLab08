@@ -44,27 +44,6 @@ void image<T>::fullWriteOut(ostream& out) {
 }
 //maybe template specialization for this. 
 template <>
-void image<int>::writePixel(ostream& out, int x, int y, int cOut) const {
-
- 	out << clamp(cOut, 0.0, 255) << endl;
-}
-
-template <>
-void image<bool>::writePixel(ostream& out, int x, int y, bool cOut) const {
-	if(cOut == true){
-		out << clamp(1, 0.0, 255);
-	}
-	else {
-		out << clamp(0, 0.0, 255);
-	}
-}
-
-template <>
-void image<char>::writePixel(ostream& out, int x, int y, char cOut) const {
-	out << cOut;
-}
-
-template <>
 void image<color>::writePixel(ostream& out, int x, int y, color cOut) const {
 
  	out << static_cast<int>(clamp(cOut.r(), 0.0, 255)) << " "
@@ -72,6 +51,26 @@ void image<color>::writePixel(ostream& out, int x, int y, color cOut) const {
  					<< static_cast<int>(clamp(cOut.b(), 0.0, 255)) << endl; 
  	
 }
+
+template <>
+void image<int>::writePixel(ostream& out, int x, int y, int cOut) const {
+ 	out << cOut << endl;
+}
+
+template <>
+void image<bool>::writePixel(ostream& out, int x, int y, bool cOut) const {
+	//out << static_cast<int>(cOut ? 1 : 0) << " ";
+	if (cOut == true){ out << "1" <<  " ";}
+	else {out << "0" <<  " ";}
+
+}
+
+template <>
+void image<char>::writePixel(ostream& out, int x, int y, char cOut) const {
+	out << cOut;
+}
+
+
 
 template <typename T>
 void image<T>::writeNewLine(ostream& out) const {
@@ -82,6 +81,26 @@ void image<T>::writeHeader(ostream& out) const {
 	//PPM format header
  	out << "P3\n" << width << " " << height << "\n255\n"; 
  }
+
+
+ template <>
+void image<bool>::writeHeader(ostream& out) const {
+	//PPM format header
+ 	out << "P3\n" << width << " " << height << "\n255\n"; 
+ }
+
+template <>
+void image<int>::writeHeader(ostream& out) const {
+	//PPM format header
+ 	out << "P3\n" << width << " " << height << "\n255\n"; 
+ }
+
+template <>
+void image<char>::writeHeader(ostream& out) const {
+	//PPM format header
+ 	out << "P3\n" << width << " " << height << "\n255\n"; 
+ }
+
 
 #endif
 
