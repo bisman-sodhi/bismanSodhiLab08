@@ -59,9 +59,9 @@ void image<int>::writePixel(ostream& out, int x, int y, int cOut) const {
 
 template <>
 void image<bool>::writePixel(ostream& out, int x, int y, bool cOut) const {
-	//out << static_cast<int>(cOut ? 1 : 0) << " ";
-	if (cOut == true){ out << "1" <<  " ";}
-	else {out << "0" <<  " ";}
+	out << static_cast<int>(cOut ? 1 : 0) << " ";
+	//if (cOut == true){ out << "1" <<  " ";}
+	//else {out << "0" <<  " ";}
 
 }
 

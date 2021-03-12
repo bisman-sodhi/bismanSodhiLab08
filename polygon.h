@@ -18,6 +18,69 @@ class Polygon : public shape {
 	void addVert(vec2 inV) { theVerts.push_back(inV); }
 	bool concave();
 
+	double getMinX() {
+		return min_element(theVerts.begin(), theVerts.end(), [](vec2 l, vec2 r){
+					return l.x() < r.x();
+      				}
+      			)->x();
+	}
+
+	double getMinY() {
+		vec2 min 
+      		= *min_element(theVerts.begin(), theVerts.end(), [](vec2 l, vec2 r){
+					return l.y() < r.y();
+      				}
+      			);
+      	return min.y();
+	}
+
+	double getMaxX() {
+		vec2 max 
+      		= *max_element(theVerts.begin(), theVerts.end(), [](vec2 l, vec2 r){
+					return l.x() < r.x();
+      				}
+      			);
+      	return max.x();
+	}
+
+	double getMaxY(){
+		vec2 max 
+      		= *max_element(theVerts.begin(), theVerts.end(), [](vec2 l, vec2 r){
+					return l.y() < r.y();
+      				}
+      			);
+      	return max.y();
+	}
+
+	void validate() override {
+		try{
+			try{
+				std::string what_arg = "polygon vert less zero"; 
+				for(auto a : theVerts){
+					if( (a.x() < 0) || (a.y() < 0) ){
+						throw std::out_of_range(what_arg) ;
+					}
+				}
+			}
+			catch(const std::out_of_range & e){
+				std::cout << e.what() << std::endl;
+				this->setColor(color(0.0, 0.0, 0.0));
+			}
+			if (this->concave()){
+				std::string what_arg_concave = "polygon concave";
+				throw std::out_of_range(what_arg_concave);
+
+			}
+		}
+		catch(const std::out_of_range & e) {
+			std::cout << e.what() << std::endl;
+			while (theVerts.size() != 3){
+				theVerts.pop_back(); 
+			}
+			this->setColor(color(255, 0.0, 0.0));
+		}	
+	}
+
   private:
 	std::vector<vec2> theVerts;
 

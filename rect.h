@@ -36,6 +36,39 @@ class Rect : public shape {
 	void setLCorner(vec2 inLCor) { upperL = inLCor; }
 	void setRCorner(vec2 inRCor) {lowerR = inRCor;}
 
+	void validate() override {
+		try{
+			std::string what_arg = "rect vert less zero";
+			try{
+				if( (upperL.x() < 0) || (upperL.y() < 0) || (lowerR.x() < 0) || (lowerR.y() < 0) ) {
+					throw std::out_of_range(what_arg);
+				}
+			}
+			catch(const std::out_of_range & e) {
+				std::cout << e.what() << std::endl;
+				this->setColor(color(0.0, 0.0, 0.0));
+			}
+			// not in correct order if upper left is less than lower right
+			std::string what_arg_order = "rect order incorrect";
+			if( ( upperL.y() < lowerR.y() ) || ( upperL.x() > lowerR.x() ) ) {
+				throw std::out_of_range(what_arg_order); 
+			}
+		}
+		catch(const std::out_of_range & e){
+			std::cout << e.what() << std::endl;
+			if( ( upperL.y() < lowerR.y() ) ) {
+				upperL.setY(lowerR.y());
+				lowerR.setY(upperL.y());
+			}
+			if( ( upperL.x() > lowerR.x() ) ) {
+				upperL.setX(lowerR.x());
+				lowerR.setX(upperL.x());
+			}
+			this->setColor(color(255,0.0,0.0));
+		}
+	}
+
+
   private:
 	vec2 upperL;
 	vec2 lowerR;

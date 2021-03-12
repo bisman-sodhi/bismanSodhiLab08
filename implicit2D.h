@@ -18,15 +18,32 @@ class Implicit2D : public shape {
 				((center.y()-y)*(center.y()-y))/(radii.y()*radii.y()) - 1.0f)  < 0);
 	}
 
-/*
-	void validate(){
-		if((center.x() < 0) && (center.y() < 0)){
-			throw "ellipse center less zero"
-		}
 
-		
+	void validate() override {
+		try{
+			try{
+				std::string what_arg = "ellipse center less zero"; 
+				if((center.x() < 0) && (center.y() < 0)){
+					throw std::out_of_range(what_arg);
+				}
+			}
+			catch(const std::out_of_range & e){
+				std::cout << e.what() << std::endl;
+				this->setColor(color(0.0,0.0,0.0));
+			}
+			std::string what_arg_divide = "ellipse divide zero";
+			if( (radii.x() == 0) || (radii.y() == 0 ) ){
+				throw std::out_of_range(what_arg_divide);
+			}
+		}
+		catch(const std::out_of_range & e){
+			std::cout << e.what() << std::endl;
+			if(radii.x() == 0 ) this->radii.setX(2);
+			if( radii.y() == 0) this->radii.setY(2);
+			this->setColor(color(255,0.0,0.0));
+		}
 	}
-	*/
+	
 
 
 	void translate(vec2 offset) {

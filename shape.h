@@ -16,7 +16,7 @@ class shape {
 	void setColor(color col) { inC = col; }
 
 	virtual bool eval(double x, double y) = 0; //pure virtual
-	//virtual void validate() = 0;
+	virtual void validate() = 0;
 
   protected:
 	color inC;
