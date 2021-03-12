@@ -50,7 +50,7 @@ class Rect : public shape {
 			}
 			// not in correct order if upper left is less than lower right
 			std::string what_arg_order = "rect order incorrect";
-			if( ( upperL.y() < lowerR.y() ) || ( upperL.x() > lowerR.x() ) ) {
+			if( ( upperL.y() < lowerR.y() ) && ( upperL.x() > lowerR.x() ) ) {
 				throw std::out_of_range(what_arg_order); 
 			}
 		}

@@ -16,4 +16,15 @@ Test Failed:
 
 //////////////////////////////////////////////////
 
-Test Failed: 'writing an image of size: 300 300 to: out\n' != 'rect order incorrect\nrect order incorrect\nrect order incorrect\nrect order incorrect\nrect order incorrect\nrect order incorrect\nrect order incorrect\nrect order incorrect\nrect order incorrect\nrect order incorrect\nwriting an image of size: 300 300 to: out\n'
+Test Failed: 'writing an image of size: 300 300 to: out\n' 
+!= 'rect order incorrect
+\nrect order incorrect
+\nrect order incorrect
+\nrect order incorrect
+\nrect order incorrect
+\nrect order incorrect
+\nrect order incorrect
+\nrect order incorrect
+\nrect order incorrect
+\nrect order incorrect
+\nwriting an image of size: 300 300 to: out\n'
