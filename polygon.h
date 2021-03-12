@@ -74,9 +74,12 @@ class Polygon : public shape {
 		}
 		catch(const std::out_of_range & e) {
 			std::cout << e.what() << std::endl;
-			while (theVerts.size() != 3){
+
+			vec2 lastone = vec2(theVerts.back().x(), theVerts.back().y());
+			while (theVerts.size() != 2){
 				theVerts.pop_back(); 
 			}
+			theVerts.push_back(lastone);
 			this->setColor(color(255, 0.0, 0.0));
 		}	
 	}

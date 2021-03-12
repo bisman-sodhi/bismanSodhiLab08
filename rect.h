@@ -50,22 +50,31 @@ class Rect : public shape {
 			}
 			// not in correct order if upper left is less than lower right
 			std::string what_arg_order = "rect order incorrect";
-			if( ( upperL.y() < lowerR.y() )  &&   ( upperL.x() > lowerR.x() ) ) {
+			if( ( upperL.y() < lowerR.y() )  ||   ( upperL.x() > lowerR.x() ) ) {
 				throw std::out_of_range(what_arg_order); 
 			}
 		}
 		catch(const std::out_of_range & e){
 			std::cout << e.what() << std::endl;
 			if( upperL.y() < lowerR.y() ) {
+				//std::cout << "1st ULX " << upperL.x() << "ULY " << upperL.y() << "LRX " << lowerR.x() << "LRY " << lowerR.y() << std::endl;
 				int temp = upperL.y();
 				this->upperL.setY(lowerR.y());
 				this->lowerR.setY(temp);
+			//std::cout << "After 1st ULX " << upperL.x() << "ULY " << upperL.y() << "LRX " << lowerR.x() << "LRY " << lowerR.y() << std::endl;
+	
 			}
+
 			if (( upperL.x() > lowerR.x() ) ) {
+			//std::cout << "2nd ULX " << upperL.x() << "ULY " << upperL.y() << "LRX " << lowerR.x() << "LRY " << lowerR.y() << std::endl;
+
 				int temp = upperL.x();
-				this->upperL.setY(lowerR.y());
-				this->lowerR.setY(temp);
+				this->upperL.setX(lowerR.x());
+				this->lowerR.setX(temp);
 			}
+
+			//std::cout << "After 2nd ULX " << upperL.x() << "ULY " << upperL.y() << "LRX " << lowerR.x() << "LRY " << lowerR.y() << std::endl;
+
 			this->setColor(color(255,0.0,0.0));
 		}
 	}
