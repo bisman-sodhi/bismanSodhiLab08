@@ -22,7 +22,7 @@ class Rect : public shape {
 		return false;
 	}
 
-	void setColor(color col) { inC = color{0, 0, col.b()}; }
+	//void setColor(color col) { inC = color{0, 0, col.b()}; }
 
 	void translate(vec2 offset) {
 		upperL += offset;
@@ -56,28 +56,25 @@ class Rect : public shape {
 		}
 		catch(const std::out_of_range & e){
 			std::cout << e.what() << std::endl;
+			//this->setColor(color(255, 0.0 , 0.0));
 			if( upperL.y() > lowerR.y() ) {
 				//std::cout << "1st ULX " << upperL.x() << "ULY " << upperL.y() << "LRX " << lowerR.x() << "LRY " << lowerR.y() << std::endl;
 				int temp = upperL.y();
 				this->upperL.setY(lowerR.y());
 				this->lowerR.setY(temp);
-				this->setColor(color(255, 0.0 , 0.0));
-			//std::cout << "After 1st ULX " << upperL.x() << "ULY " << upperL.y() << "LRX " << lowerR.x() << "LRY " << lowerR.y() << std::endl;
-	
+			//std::cout << "After 1st ULX " << upperL.x() << "ULY " << upperL.y() << "LRX " << lowerR.x() << "LRY " << lowerR.y() << std::endl;	
 			}
-
 			if (( upperL.x() > lowerR.x() ) ) {
 			//std::cout << "2nd ULX " << upperL.x() << "ULY " << upperL.y() << "LRX " << lowerR.x() << "LRY " << lowerR.y() << std::endl;
-
+				
 				int temp = upperL.x();
 				this->upperL.setX(lowerR.x());
 				this->lowerR.setX(temp);
-				this->setColor(color(255, 0.0 , 0.0));
 			}
-
 			//std::cout << "After 2nd ULX " << upperL.x() << "ULY " << upperL.y() << "LRX " << lowerR.x() << "LRY " << lowerR.y() << std::endl;
-
-			this->setColor(color(255, 0.0 , 0.0));
+			color red = color(255.0, 0.0, 0.0);
+			this->setColor(red);
+			//std::cout << this->getInC().r() << " " << this->getInC().g() << " " << this->getInC().b() << std::endl; 
 		}
 	}
 

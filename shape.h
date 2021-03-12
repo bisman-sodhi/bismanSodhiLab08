@@ -13,7 +13,9 @@ class shape {
 	double getDepth() const {return depth; }
 
 	void setDepth(double inD) { depth= inD; }
-	void setColor(color col) { inC = col; }
+	void setColor(color col) { 
+		inC = col; 
+	}
 
 	virtual bool eval(double x, double y) = 0; //pure virtual
 	virtual void validate() = 0;

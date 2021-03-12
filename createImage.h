@@ -63,8 +63,7 @@ void createImage<color>(image<color>& theImg,
 					inTrue = true;
 					curDepth = eq->getDepth();
 				}
-			}
-					
+			}			
 			if (inTrue) {			
 				theImg.setPixel(x, y, inC);
 			}
