@@ -56,9 +56,16 @@ class Rect : public shape {
 		}
 		catch(const std::out_of_range & e){
 			std::cout << e.what() << std::endl;
-			//( upperL.y() < lowerR.y() ) 
-			this->upperL.setY(lowerR.y());
-			this->lowerR.setY(upperL.y());
+			if( upperL.y() < lowerR.y() ) {
+				int temp = upperL.y();
+				this->upperL.setY(lowerR.y());
+				this->lowerR.setY(temp);
+			}
+			if (( upperL.x() > lowerR.x() ) ) {
+				int temp = upperL.x();
+				this->upperL.setY(lowerR.y());
+				this->lowerR.setY(temp);
+			}
 			this->setColor(color(255,0.0,0.0));
 		}
 	}
