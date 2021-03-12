@@ -23,6 +23,10 @@ void createImage(image<T>& theImg, vector<shared_ptr<shape>> theShapes, T inC) {
 			//iterate through all possible equations
 			for (auto eq : theShapes) {
 				if (eq->eval(x, y) && eq->getDepth() > curDepth) {
+					if(typeid(inC) == typeid(int)){
+						inC = static_cast<int>( (eq->getInC().bright()) / 3.0 );
+						//inC = static_cast<int>(drawC/3);
+					}
 					inTrue = true;
 					curDepth = eq->getDepth();
 				}
@@ -55,12 +59,7 @@ void createImage<color>(image<color>& theImg,
 			//iterate through all possible equations
 			for (auto eq : theShapes) {
 				if (eq->eval(x, y) && eq->getDepth() > curDepth) {
-					if(typeid(inC) == typeid(int)){
-						inC = (eq->getInC().bright())/3;
-					}
-					else {
-						inC = eq->getInC();
-					}
+					inC = eq->getInC();
 					inTrue = true;
 					curDepth = eq->getDepth();
 				}

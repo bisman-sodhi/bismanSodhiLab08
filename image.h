@@ -54,7 +54,7 @@ void image<color>::writePixel(ostream& out, int x, int y, color cOut) const {
 
 template <>
 void image<int>::writePixel(ostream& out, int x, int y, int cOut) const {
- 	out << cOut << endl;
+ 	out << static_cast<int>(clamp(cOut, 0.0, 255))  << " ";
 }
 
 template <>
@@ -86,19 +86,19 @@ void image<T>::writeHeader(ostream& out) const {
  template <>
 void image<bool>::writeHeader(ostream& out) const {
 	//PPM format header
- 	out << "P3\n" << width << " " << height << "\n255\n"; 
+ 	out << "P1\n" << width << " " << height << "\n"; 
  }
 
 template <>
 void image<int>::writeHeader(ostream& out) const {
 	//PPM format header
- 	out << "P3\n" << width << " " << height << "\n255\n"; 
+ 	out << "P2\n" << width << " " << height << "\n255\n"; 
  }
 
 template <>
 void image<char>::writeHeader(ostream& out) const {
 	//PPM format header
- 	out << "P3\n" << width << " " << height << "\n255\n"; 
+ 	out << "ascii file:\n" << width << " " << height << "\n"; 
  }
 
 
