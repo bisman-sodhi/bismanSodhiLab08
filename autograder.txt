@@ -1,0 +1,19 @@
+Test Failed: 
+'polygon concave
+\npolygon concave
+\nellipse divide zero
+\nrect order incorrect
+\npolygon vert less zero
+\nellipse center less zero\nrect vert less zero\nrect order incorrect\nellipse center less zero\nellipse divide zero\npolygon vert less zero\npolygon concave\nwriting an image of size: 300 300 to: out\n' 
+!= 
+'polygon concave
+\npolygon concave
+\nellipse divide zero
+\nrect order incorrect
+\npolygon vert less zero
+\nrect vert less zero\nrect order incorrect\nellipse divide zero\npolygon vert less zero\npolygon concave\nwriting an image of size: 300 300 to: out\n'
+
+
+//////////////////////////////////////////////////
+
+Test Failed: 'writing an image of size: 300 300 to: out\n' != 'rect order incorrect\nrect order incorrect\nrect order incorrect\nrect order incorrect\nrect order incorrect\nrect order incorrect\nrect order incorrect\nrect order incorrect\nrect order incorrect\nrect order incorrect\nwriting an image of size: 300 300 to: out\n'

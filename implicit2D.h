@@ -23,7 +23,7 @@ class Implicit2D : public shape {
 		try{
 			try{
 				std::string what_arg = "ellipse center less zero"; 
-				if((center.x() < 0) && (center.y() < 0)){
+				if((center.x() < 0) || (center.y() < 0)){
 					throw std::out_of_range(what_arg);
 				}
 			}
